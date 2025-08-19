@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMovies, fetchNowPlaying, fetchNowPlayingMovies, fetchPopularMovies, fetchTopRatedMovies, fetchUpcoming, fetchUpcomingMovies } from "../actions/movieActions";
+import { fetchMovieDetail, fetchNowPlayingMovies, fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies, removeDetailData } from "../actions/movieActions";
 
 
 const movieSlice = createSlice({
     name: "movies",
     initialState: {
+        movieDetailData: null,
+        pendingDetail: false,
         upcomingMovies: [],
         topRatedMovies: [],
         popularMovies: [],
@@ -13,7 +15,12 @@ const movieSlice = createSlice({
         error: null
     },
 
-    reducers: {},
+    reducers: {
+
+        clearMovieDetail: (state) => {
+            state.movieDetailData = null
+          }
+    },
 
     extraReducers: (builder) => {
 
@@ -76,9 +83,22 @@ const movieSlice = createSlice({
                 state.pending = false,
                     state.error = action.payload.message
             })
+            //** movie detail */
+            .addCase(fetchMovieDetail.pending, (state) => {
+                state.pendingDetail = true
+            })
 
+            .addCase(fetchMovieDetail.fulfilled, (state, action) => {
+                state.pendingDetail = false,
+                    state.movieDetailData = action.payload
+            })
 
+            .addCase(fetchMovieDetail.rejected, (state, action) => {
+                state.pendingDetail = false,
+                    state.error = action.payload.message
+            })
+      
     }
 })
-
+export const { clearMovieDetail } = movieSlice.actions
 export default movieSlice.reducer;

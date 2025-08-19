@@ -29,7 +29,7 @@ const Section = (props) => {
 
     return (
         <View style={styles.container}>
-            <SectionHeader title={item.title} />
+            <SectionHeader title={item.title} value={item.value} />
 
             <FlatList
                 horizontal

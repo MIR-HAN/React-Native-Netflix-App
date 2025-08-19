@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { BASE_URL, IMAGE_BASE_URL } from '../../service/urls';
 import { height, token, width } from '../../utils/constants';
+import MovieDetail from '../../screens/movieList/movieDetail';
+import { MOVIEDETAIL } from '../../utils/routes';
+import { useNavigation } from '@react-navigation/native';
 
 const MovieCard = ({ item }) => {
 
+    const navigation =useNavigation()
 
     return (
-        <View style={styles.container}>
+        <Pressable style={styles.container} onPress={()=> navigation.navigate(MOVIEDETAIL, {movieId:item.id})}>
             <Image
                 style={{ width:width*0.27, height:height*0.12,borderRadius:10 }}
                 source={{
@@ -15,7 +19,7 @@ const MovieCard = ({ item }) => {
                 }}
             />
             <Text numberOfLines={1} style={{color:"white", }}>{item.title}</Text>
-        </View>
+        </Pressable>
     );
 };
 
