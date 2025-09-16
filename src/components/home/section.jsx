@@ -8,7 +8,6 @@ import MovieCard from './movieCard';
 const Section = (props) => {
     const { item } = props
 
-
     const { upcomingMovies, topRatedMovies, popularMovies, nowPlayingMovies } = useSelector((state) => state.movies)
 
     const getData = () => {

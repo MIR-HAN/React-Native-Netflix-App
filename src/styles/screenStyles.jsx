@@ -6,6 +6,11 @@ const screenStyles = StyleSheet.create({
         backgroundColor:aplicationColors.PRIMARY,
         padding:10,
         flex:1
+    },
+    columnWrapper:{
+        backgroundColor:aplicationColors.PRIMARY,
+        padding:10,
+        flex:1
     }
 })
 

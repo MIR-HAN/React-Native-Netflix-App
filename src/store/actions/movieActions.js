@@ -28,7 +28,7 @@ const fetchNowPlayingMovies = createAsyncThunk("movies/fetchNowPlaying", async (
 })
 
 const fetchMovieDetail = createAsyncThunk("movies/fetchMovieDetail", async (movie_id) => {
-    const response = await getRequest(BASE_URL + movie_id)
+    const response = await getRequest(BASE_URL + "movie/" + movie_id)
     return response.data
 })
 
